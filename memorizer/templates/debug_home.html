@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>Welcome {{ username }}</h1>
+    <h3>Your memorizing lists:</h3>
+    <a href="{% url 'memorizing_list' pk=0 %}">add a new list</a>
+    <ol>
+    {% for list in memorizing_lists %}
+        <li>{{ list.date }}: <a href="{% url 'memorizing_list' pk=list.pk %}">{{ list.name }}</a></li>
+    {% endfor %}
+    </ol>
+    <h3>Your words:</h3>
+    <a href="{% url 'word' pk=0 %}">add a new word</a>
+    <ol>
+    {% for word in words %}
+        <li>
+            <a href="{% url 'word' pk=word.pk %}"><b>{{ word.eng_word }}</b> - {{ word.rus_word }}</a>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}

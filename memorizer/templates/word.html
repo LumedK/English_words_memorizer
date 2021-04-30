@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+    <form class="word" method="post"> {% csrf_token %}
+        English: <input class="field_eng_word" type="text" name="eng_word" value="{{ word.eng_word }}"><br>
+        Russian: <input class="field_ru_word" type="text" name="rus_word" value="{{ word.rus_word }}"><br>
+        UK transcription: <input class="field_ts_uk" type="text" name="transcription_uk" value="{{ word.transcription_uk }}"><br>
+        US transcription: <input class="field_ts_us" type="text" name="transcription_us" value="{{ word.transcription_us }}"><br>
+        <input class="button_save" name="save" type="submit" value="save">
+    </form>
+{% endblock %}

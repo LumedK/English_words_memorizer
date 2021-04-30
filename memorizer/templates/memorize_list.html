@@ -1,0 +1,32 @@
+<!--{% extends 'base.html' %}-->
+<!--{% block body %}-->
+<!--<div>-->
+<!--    <form method="post"> {% csrf_token %}-->
+<!--        List name:-->
+<!--        {% if change %}-->
+<!--            <input name="ListName" type="text" maxlength="100" value="{{ memory_list.name }}">-->
+<!--        {% else %}-->
+<!--            {{ memory_list.name }}-->
+<!--        {% endif %}-->
+<!--        <small>(123 %)</small>-->
+<!--        {% if not change %}-->
+<!--            <input name="Change" type="submit" value="change">-->
+<!--        {% endif %}-->
+
+<!--        <br>list or words<br>-->
+<!--        1...<br>-->
+<!--        2...<br>-->
+<!--         ...<br>-->
+<!--        {% if change %}-->
+<!--            <input name="Save" type="submit" value="Save"><input name="Cancel" type="submit" value="Cancel"><br>-->
+<!--        {% else %}-->
+<!--            <input name="Run" type="submit" value="Run"><br>-->
+<!--        {% endif %}-->
+<!--	<ol>-->
+<!--	  <li><b><i>{{ word_eng }}</i></b> / <i>{{ word_rus }}</i>-->
+<!--		  <font size="1">(&#128077; 10 | &#128078; 0)</font></li>-->
+<!--	<a href="add_word">add word</a>-->
+<!--	</ol>-->
+<!--    </form>-->
+<!--</div>-->
+<!--{% endblock %}-->
