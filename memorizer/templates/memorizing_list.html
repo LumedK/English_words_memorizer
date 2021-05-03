@@ -1,32 +1,37 @@
 {% extends 'base.html' %}
 {% block body %}
 <form class="memorizing_list" method="post"> {% csrf_token %}
-    List name: <input class="header_name" type="text" value="{{ memorizing_list.name }}">
+    <input type="hidden" name="memorizing_list_pk" value="{{ memorizing_list.pk }}">
+    List name: <input class="header_name" type="text" name="memorizing_list_name"
+                      value="{{ memorizing_list.name }}">
     Completed:
     {% if memorizing_list.completed %}
-        <input class="header_completed" type="checkbox" checked="checked">
+        <input class="header_completed" type="checkbox" name="memorizing_list_completed" checked="checked">
     {% else %}
-        <input class="header_completed" type="checkbox">
+        <input class="header_completed" type="checkbox" name="memorizing_list_completed">
     {% endif %}
     <input class="button_save" name="save" type="submit" value="save">
+    {% if not memorizing_list.pk %}
+        <small>changed</small>
+    {% endif %}
     <br>
     <ol>
     {% for line in memorizing_lines %}
         <li>
-            <button class="button_remove" name="remove" type="submit" value="{{ line.pk }}">remove</button>
+            <button class="button_remove" name="remove" type="submit" value="{{ forloop.counter }}">remove</button>
+            <input type="hidden" name="added_line{{ forloop.counter }}" value="{{ line.word.pk }}">
             {{ line.word.eng_word }} - {{ line.word.rus_word }}
         </li>
     {% endfor %}
     <li>
-        <button class="button_remove" name="add_line" type="submit" value="{{ 0 }}">add</button>
+        <button class="button_add" name="add" type="submit" value="add">add</button>
         <select class="select" name="new_line">
-            <option>...</option>
+            <option value="0">...</option>
             {% for word in user_words %}
-                <option>{{ word.eng_word }} - {{ word.rus_word }}</option>
+                <option value="{{ word.pk }}">{{ word.eng_word }} - {{ word.rus_word }}</option>
             {% endfor %}
         </select>
     </li>
-
     </ol>
     <input class="button_run" name="run" type="submit" value="run">
 </form>

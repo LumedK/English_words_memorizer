@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+    <form method="post"> {% csrf_token %}
+    <h3>Delete some of your context</h3>
+    <input name="delete_marked" type="submit" value="delete marked">
+    <dl>
+        <dt>Your memorizing lists:</dt>
+        {% for list in lists %}
+            <dd>
+                <input id="list_{{ forloop.counter }}" type="checkbox" name="list_{{ forloop.counter }}" value="{{ list.pk }}">
+                <label for="list_{{ forloop.counter }}">{{ list.name }}</label>
+            </dd>
+        {% endfor %}
+        <dt>Your words:</dt>
+        {% for word in words %}
+            <dd>
+                <input id="word_{{ forloop.counter }}" type="checkbox" name="word_{{ forloop.counter }}" value="{{ word.pk }}">
+                <label for="word_{{ forloop.counter }}">{{ word.eng_word }} - {{ word.rus_word }}</label>
+            </dd>
+        {% endfor %}
+    </dl>
+    </form>
+{% endblock %}

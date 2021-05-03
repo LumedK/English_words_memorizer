@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body %}
+<form class="run" method="post"> {% csrf_token %}
+  {% for stats in progress %}
+    {% if stats == current_progress %}[{% endif %}
+      {% if stats.completed == 0 %} _
+      {% elif stats.failed != 0 %} ✘
+      {% else %} ✔
+      {% endif %}
+    {% if stats == current_progress %}]{% endif %}
+  {% endfor %}
+  <input type="hidden" name="progress_json" value="{{ progress_json }}">
+  <h3>"{{ current_progress.word.rus_word }}"</h3>
+  {% if current_progress.user_text %}
+    <input type="text" name="check_field" placeholder="write a translation here" autocomplete="off"
+    value="{{ current_progress.user_text }}" disabled>
+  {% else %}
+    <input type="text" name="check_field" placeholder="write a translation here" autocomplete="off" spellcheck="false">
+  {% endif %}
+
+  {% if current_progress.completed == 0 %}<input type="submit" name="check" value="check">
+  {% elif current_progress.failed != 0 %}&nbsp;&nbsp;<b>Wrong! "{{ current_progress.word.eng_word  }}"</b> is correct
+  {% else %}&nbsp;&nbsp;<b>Correct!</b>
+  {% endif %}
+  <br>
+  <input type="submit" name="previous" value="previous">
+  <input type="submit" name="next" value="next">
+</form>
+{% endblock %}

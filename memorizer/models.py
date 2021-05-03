@@ -10,16 +10,6 @@ class Word(models.Model):
     editor = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-#
-#
-# class WordProgress(models.Model):
-#     word = models.ForeignKey(Words, on_delete=models.CASCADE)
-#     repeats = models.IntegerField()
-#     mistakes = models.IntegerField()
-#     percent = models.DecimalField(max_digits=2, decimal_places=0)
-#     user = models.ManyToManyField(User)
-
-
 class MemorizingList(models.Model):
     completed = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,10 +19,15 @@ class MemorizingList(models.Model):
 class MemorizingLine(models.Model):
     link = models.ForeignKey(MemorizingList, on_delete=models.CASCADE)
     word = models.ForeignKey(Word, on_delete=models.CASCADE)
-    completes = models.IntegerField()
-    fails = models.IntegerField()
-#
-#
-# class MemoryListRepeats(models.Model):
-#     date = models.DateField(auto_now=True)
-#     percent = models.IntegerField()
+
+
+class Statistics(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    list = models.ForeignKey(MemorizingList, on_delete=models.CASCADE)
+    line = models.ForeignKey(MemorizingLine, on_delete=models.CASCADE)
+    word = models.ForeignKey(Word, on_delete=models.CASCADE)
+    run = models.IntegerField()
+    completed = models.IntegerField(default=0)
+    failed = models.IntegerField(default=0)
+    user_text = models.CharField(max_length=100)
+    date = models.DateField(auto_now=True)

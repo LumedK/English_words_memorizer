@@ -1,0 +1,16 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="memorizer.models.MemoryList.objects" />
+          <option value="memorizer.models.Word.objects" />
+          <option value="memorizer.models.MemorizingList.objects" />
+          <option value="memorizer.models.Word.object" />
+          <option value="memorizer.models.MemorizingLine.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
