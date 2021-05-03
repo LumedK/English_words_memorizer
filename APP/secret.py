@@ -1,5 +1,5 @@
 
 secret = {
-    'SECRET_KEY': 'django-insecure-w=em92o(031hh(eomwjncy-!$ic$5oltc-t$*pdqz+i5+$0%1$',
+    'SECRET_KEY': '123456789',
     'DEBUG': True,
 }
